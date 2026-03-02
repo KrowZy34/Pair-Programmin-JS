@@ -36,3 +36,9 @@ function escudoMagico() {
     console.log(`${heroe1} activa su escudo magico , su vida ahora es ${escudomagico} `);
     return escudomagico
 }
+
+ataque();
+defender();
+superAtaque();
+recargaEnergia();
+escudoMagico();
