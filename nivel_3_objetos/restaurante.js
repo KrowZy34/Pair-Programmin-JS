@@ -24,7 +24,7 @@ function ordenarComida() {
 function pagarComida() {
     precioComida = 40;
     cliente.dinero = cliente.dinero - precioComida;
-    console.log(`El cliente ${cliente.nombre} pago la comida con un ${precioComida}`)
+    console.log(`El cliente ${cliente.nombre} pago la comida con un precio de ${precioComida}`)
     console.log(`El cliente ${cliente.nombre} tiene ahora dinero el monto de  ${cliente.dinero} `)
 
 
