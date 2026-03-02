@@ -32,7 +32,7 @@ function renderMenu() {
 
 // 3) FUNCIÓN: agregar un plato demo al menú
 function agregarPlatoDemo() {
-    const nuevoPlato = { nombre: "Pollo a la brasa", precio: 20, stock: 4 };
+    const nuevoPlato = { nombre: "Ceviche Mixto", precio: 48, stock: 10 };
     menu.push(nuevoPlato);
 }
 
