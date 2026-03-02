@@ -1,6 +1,9 @@
 let heroe1 = "Silver Surfer";
 let vidaHeroe1 = 100;
 
+let heroe2 = "Spiderman";
+let vidaHeroe2 = 100;
+
 function ataque() {
     daño = 30;
     vidaHeroe2 = vidaHeroe2 - daño;
