@@ -7,6 +7,11 @@ let menu = [
     { nombre: "Aji de gallina", precio: 10, stock: 10 }
 ];
 
+function contarPlatos() {
+    totalplato = menu.length;
+    console.log(`Total de platos en el menu es ${totalplato}`);
+}
+
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
@@ -22,6 +27,7 @@ function renderMenu() {
 
     html += "</ul>";
     output.innerHTML = html;
+    contarPlatos();
 }
 
 // 3) FUNCIÓN: agregar un plato demo al menú
@@ -30,9 +36,13 @@ function agregarPlatoDemo() {
     menu.push(nuevoPlato);
 }
 
+
+
+
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
     renderMenu();
+
 });
 
 document.getElementById("btnAgregar").addEventListener("click", () => {
