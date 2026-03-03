@@ -7,6 +7,14 @@ let menu = [
     { nombre: "Aji de gallina", precio: 10, stock: 10 }
 ];
 
+
+function buscarPlatoNombre(nombre) {
+    let resultado = menu.find(function (plato) {
+        return plato.nombre.toLowerCase() === nombre.toLowerCase();
+    })
+    return resultado;
+}
+
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
