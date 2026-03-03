@@ -33,6 +33,15 @@ function stockAlto() {
     return stockalto;
 }
 
+function resumenMenu() {
+    let resumen = menu.map(function (plato) {
+        return plato.nombre + "S/" + plato.precio + "Stock" + plato.stock;
+    });
+    return resumen;
+}
+
+
+
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
