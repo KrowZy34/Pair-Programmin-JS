@@ -79,3 +79,9 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     agregarPlatoDemo();
     renderMenu();
 });
+
+document.getElementById("btnNombre").addEventListener("click", () => {
+    let nombre = document.getElementById("inputNombre");
+    let resultado = buscarPlatoNombre(nombre);
+    mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+})
