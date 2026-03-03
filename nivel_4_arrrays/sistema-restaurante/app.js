@@ -26,9 +26,12 @@ function stockMinimo() {
     return stockMinimo;
 }
 
-
-
-
+function stockAlto() {
+    let stockalto = menu.filter(function (plato) {
+        return plato.stock >= 20;
+    });
+    return stockalto;
+}
 
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
