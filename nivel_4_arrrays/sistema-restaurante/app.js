@@ -82,12 +82,28 @@ function renderMenu() {
     const output = document.getElementById("output");
     output.innerHTML = ""; // limpiar
 
+    let plato = menu[i];
+    let estado = "";
+
+    if (plato.stock === 0) {
+        estado = "agotado";
+    } else if (plato.stock <= 3) {
+        estado = "poco stock";
+    } else {
+        estado = "stock normal";
+    }
     // crear una lista HTML simple
     let html = "<ul>";
 
     for (let i = 0; i < menu.length; i++) {
         const plato = menu[i];
         html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
+    }
+
+    if (plato.stock === 0) {
+        html += " Agotado";
+    } else if (plato.stock <= 3) {
+        html += " Stock bajo";
     }
 
     html += "</ul>";
@@ -100,9 +116,6 @@ function agregarPlatoDemo() {
     const nuevoPlato = { nombre: "Ceviche Mixto", precio: 48, stock: 10 };
     menu.push(nuevoPlato);
 }
-
-
-
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
@@ -139,3 +152,5 @@ document.getElementById("btnVender").addEventListener("click", () => {
     let resultado = venderPlato(nombre, cantidad);
     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
 });
+
+
