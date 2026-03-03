@@ -12,6 +12,71 @@ function contarPlatos() {
     console.log(`Total de platos en el menu es ${totalplato}`);
 }
 
+function buscarPlatoNombre(nombre) {
+    let resultado = menu.find(function (plato) {
+        return plato.nombre.toLowerCase() === nombre.toLowerCase();
+    })
+    return resultado;
+}
+
+function stockMinimo() {
+    let stockminimo = menu.filter(function (plato) {
+        return plato.stock <= 3;
+    });
+    return stockminimo;
+}
+
+function stockAlto() {
+    let stockalto = menu.filter(function (plato) {
+        return plato.stock >= 5;
+    });
+    return stockalto;
+}
+
+function resumenMenu() {
+    let resumen = menu.map(function (plato) {
+        return plato.nombre + "S/" + plato.precio + "Stock" + plato.stock;
+    });
+    return resumen;
+}
+
+
+function venderPlato(nombre, cantidad) {
+    let platos = buscarPlatoNombre(nombre);
+    if (!platos) {
+
+        return "No se encontro el plato";
+    }
+    if (platos.stock === 0) {
+        return "Plato no disponible  "
+    }
+    if (platos.stock < cantidad) {
+        return "No hay stock suficiente"
+    }
+    platos.stock = platos.stock - cantidad;
+    return `Se vendio ${cantidad} de ${platos.nombre}  y que el stock restante es ${platos.stock}`;
+}
+
+
+function mostrarResultado(resultado) {
+    const output = document.getElementById("output");
+    let html = "<ul>";
+    resultado.forEach(item => {
+        if (typeof item === "string") {
+            html += `<li>${item}</li>`;
+        } else {
+            html += `<li>${item.nombre} — S/ ${item.precio} — Stock: ${item.stock}</li>`;
+        }
+    });
+    html += "</ul>";
+    output.innerHTML = html;
+}
+
+function mostrarTextoEnPantalla(lista) {
+    const output = document.getElementById("output");
+    output.innerHTML = "<ul>" + lista.map(item => `<li>${item}</li>`).join("") + "</ul>";
+}
+
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
@@ -48,4 +113,29 @@ document.getElementById("btnMostrar").addEventListener("click", () => {
 document.getElementById("btnAgregar").addEventListener("click", () => {
     agregarPlatoDemo();
     renderMenu();
+});
+
+document.getElementById("btnNombre").addEventListener("click", () => {
+    let nombre = document.getElementById("inputNombre").value;
+    let resultado = buscarPlatoNombre(nombre);
+    mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+});
+
+document.getElementById("btnStockBajo").addEventListener("click", () => {
+    mostrarResultado(stockMinimo());
+});
+
+document.getElementById("btnStockAlto").addEventListener("click", () => {
+    mostrarResultado(stockAlto());
+});
+
+document.getElementById("btnResumen").addEventListener("click", () => {
+    mostrarTextoEnPantalla(resumenMenu());
+});
+
+document.getElementById("btnVender").addEventListener("click", () => {
+    let nombre = document.getElementById("inputVender").value;
+    let cantidad = document.getElementById("inputCantidad").value;
+    let resultado = venderPlato(nombre, cantidad);
+    mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
 });
