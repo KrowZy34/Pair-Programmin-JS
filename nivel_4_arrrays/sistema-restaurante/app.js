@@ -13,28 +13,28 @@ function contarPlatos() {
 }
 
 function buscarPlatoNombre(nombre) {
-    let resultado = menu.find(function (plato) {
+    let resultado = menu.find(function(plato) {
         return plato.nombre.toLowerCase() === nombre.toLowerCase();
     })
     return resultado;
 }
 
 function stockMinimo() {
-    let stockminimo = menu.filter(function (plato) {
+    let stockminimo = menu.filter(function(plato) {
         return plato.stock <= 3;
     });
     return stockminimo;
 }
 
 function stockAlto() {
-    let stockalto = menu.filter(function (plato) {
+    let stockalto = menu.filter(function(plato) {
         return plato.stock >= 5;
     });
     return stockalto;
 }
 
 function resumenMenu() {
-    let resumen = menu.map(function (plato) {
+    let resumen = menu.map(function(plato) {
         return plato.nombre + "S/" + plato.precio + "Stock" + plato.stock;
     });
     return resumen;
