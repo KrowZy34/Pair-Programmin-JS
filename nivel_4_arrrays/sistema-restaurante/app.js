@@ -97,7 +97,7 @@ document.getElementById("btnNombre").addEventListener("click", () => {
     let nombre = document.getElementById("inputNombre");
     let resultado = buscarPlatoNombre(nombre);
     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
-})
+});
 
 document.getElementById("btnStockBajo").addEventListener("click", () => {
     mostrarResultado(stockMinimo());
