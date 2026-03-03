@@ -88,4 +88,6 @@ document.getElementById("btnStockBajo").addEventListener("click", () => {
     mostrarResultado(stockMinimo());
 });
 
-
+document.getElementById("btnStockAlto").addEventListener("click", () => {
+    mostrarResultado(stockAlto());
+});
