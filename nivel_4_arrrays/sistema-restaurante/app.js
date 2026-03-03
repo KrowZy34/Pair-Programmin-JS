@@ -58,9 +58,6 @@ function venderPlato(nombre, cantidad) {
 }
 
 
-
-
-
 function mostrarResultado(resultado) {
     const output = document.getElementById("output");
     let html = "<ul>";
@@ -134,4 +131,11 @@ document.getElementById("btnStockAlto").addEventListener("click", () => {
 
 document.getElementById("btnResumen").addEventListener("click", () => {
     mostrarTextoEnPantalla(resumenMenu());
+});
+
+document.getElementById("btnVender").addEventListener("click", () => {
+    let nombre = document.getElementById("inputVender").value;
+    let cantidad = document.getElementById("inputCantidad").value;
+    let resultado = venderPlato(nombre, cantidad);
+    mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
 });
