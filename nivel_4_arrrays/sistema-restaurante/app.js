@@ -21,14 +21,14 @@ function buscarPlatoNombre(nombre) {
 
 function stockMinimo() {
     let stockminimo = menu.filter(function (plato) {
-        return plato.stock <= 1;
+        return plato.stock <= 3;
     });
-    return stockMinimo;
+    return stockminimo;
 }
 
 function stockAlto() {
     let stockalto = menu.filter(function (plato) {
-        return plato.stock >= 20;
+        return plato.stock >= 5;
     });
     return stockalto;
 }
@@ -43,8 +43,12 @@ function resumenMenu() {
 function mostrarResultado(resultado) {
     const output = document.getElementById("output");
     let html = "<ul>";
-    resultado.forEach(plato => {
-        html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
+    resultado.forEach(item => {
+        if (typeof item === "string") {
+            html += `<li>${item}</li>`;
+        } else {
+            html += `<li>${item.nombre} — S/ ${item.precio} — Stock: ${item.stock}</li>`;
+        }
     });
     html += "</ul>";
     output.innerHTML = html;
@@ -94,7 +98,7 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
 });
 
 document.getElementById("btnNombre").addEventListener("click", () => {
-    let nombre = document.getElementById("inputNombre");
+    let nombre = document.getElementById("inputNombre").value;
     let resultado = buscarPlatoNombre(nombre);
     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
 });
