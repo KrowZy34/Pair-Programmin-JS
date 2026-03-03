@@ -58,6 +58,28 @@ function venderPlato(nombre, cantidad) {
 }
 
 
+function verificarEstadoGeneral() {
+    let estadoAgotado = 0;
+    let estadoBajo = 0;
+
+    for (let i = 0; i < menu.length; i++) {
+        if (menu[i].stock == 0) {
+            estadoAgotado++;
+        } else if (menu[i].stock <= 3) {
+            estadoBajo++;
+        }
+    }
+    if (estadoAgotado > 0) {
+        return `Hay ${estadoAgotado} platos agotados`;
+    }
+    if (estadoBajo > 0) {
+        return `Hay ${estadoBajo} platos con stock bajo`;
+    }
+    return `Todos los paltos disponibles`;
+
+}
+
+
 function mostrarResultado(resultado) {
     const output = document.getElementById("output");
     let html = "<ul>";
@@ -80,33 +102,31 @@ function mostrarTextoEnPantalla(lista) {
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
-    output.innerHTML = ""; // limpiar
+    output.innerHTML = "";
 
-    let plato = menu[i];
-    let estado = "";
-
-    if (plato.stock === 0) {
-        estado = "agotado";
-    } else if (plato.stock <= 3) {
-        estado = "poco stock";
-    } else {
-        estado = "stock normal";
-    }
-    // crear una lista HTML simple
     let html = "<ul>";
 
     for (let i = 0; i < menu.length; i++) {
         const plato = menu[i];
-        html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
-    }
+        let estado = "";
+        let clase = "";
 
-    if (plato.stock === 0) {
-        html += " Agotado";
-    } else if (plato.stock <= 3) {
-        html += " Stock bajo";
+        if (plato.stock === 0) {
+            estado = "Agotado";
+            clase = "agotado";
+        } else if (plato.stock <= 3) {
+            estado = "Stock bajo";
+            clase = "bajo";
+        } else {
+            estado = "Stock normal";
+            clase = "normal";
+        }
+
+        html += `<li class="${clase}">${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock} — ${estado}</li>`;
     }
 
     html += "</ul>";
+    html += "<p><strong>" + verificarEstadoGeneral() + "</strong></p>";
     output.innerHTML = html;
     contarPlatos();
 }
