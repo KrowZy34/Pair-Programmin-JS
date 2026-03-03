@@ -40,6 +40,21 @@ function resumenMenu() {
     return resumen;
 }
 
+function mostrarResultado(lista) {
+    const output = document.getElementById("output");
+    let html = "<ul>";
+    lista.forEach(plato => {
+        html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
+    });
+    html += "</ul>";
+    output.innerHTML = html;
+}
+
+function mostrarTextoEnPantalla(lista) {
+    const output = document.getElementById("output");
+    output.innerHTML = "<ul>" + lista.map(item => `<li>${item}</li>`).join("") + "</ul>";
+}
+
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
