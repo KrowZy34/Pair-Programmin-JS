@@ -40,6 +40,27 @@ function resumenMenu() {
     return resumen;
 }
 
+
+function venderPlato(nombre, cantidad) {
+    let platos = buscarPlatoNombre(nombre);
+    if (!platos) {
+
+        return "No se encontro el plato";
+    }
+    if (platos.stock === 0) {
+        return "Plato no disponible  "
+    }
+    if (platos.stock < cantidad) {
+        return "No hay stock suficiente"
+    }
+    platos.stock = platos.stock - cantidad;
+    return `Se vendio ${cantidad} de ${platos.nombre}  y que el stock restante es ${platos.stock}`;
+}
+
+
+
+
+
 function mostrarResultado(resultado) {
     const output = document.getElementById("output");
     let html = "<ul>";
