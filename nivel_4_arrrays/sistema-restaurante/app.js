@@ -40,8 +40,6 @@ function resumenMenu() {
     return resumen;
 }
 
-
-
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
     const output = document.getElementById("output");
@@ -84,4 +82,10 @@ document.getElementById("btnNombre").addEventListener("click", () => {
     let nombre = document.getElementById("inputNombre");
     let resultado = buscarPlatoNombre(nombre);
     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
-})
+});
+
+document.getElementById("btnStockBajo").addEventListener("click", () => {
+    mostrarResultado(stockMinimo());
+});
+
+
