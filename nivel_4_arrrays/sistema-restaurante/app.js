@@ -40,10 +40,10 @@ function resumenMenu() {
     return resumen;
 }
 
-function mostrarResultado(lista) {
+function mostrarResultado(resultado) {
     const output = document.getElementById("output");
     let html = "<ul>";
-    lista.forEach(plato => {
+    resultado.forEach(plato => {
         html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
     });
     html += "</ul>";
@@ -97,7 +97,7 @@ document.getElementById("btnNombre").addEventListener("click", () => {
     let nombre = document.getElementById("inputNombre");
     let resultado = buscarPlatoNombre(nombre);
     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
-});
+})
 
 document.getElementById("btnStockBajo").addEventListener("click", () => {
     mostrarResultado(stockMinimo());
@@ -105,4 +105,8 @@ document.getElementById("btnStockBajo").addEventListener("click", () => {
 
 document.getElementById("btnStockAlto").addEventListener("click", () => {
     mostrarResultado(stockAlto());
+});
+
+document.getElementById("btnResumen").addEventListener("click", () => {
+    mostrarTextoEnPantalla(resumenMenu());
 });
