@@ -36,7 +36,7 @@ export function resumenMenu() {
 export function simuladorRepuestas(resultado) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const falla = Math.random() > 0.3;
+            const falla = Math.random() < 0.3;
             if (falla) {
                 reject("Error del servidor simulado");
             } else {
@@ -65,11 +65,15 @@ export function venderPlato(nombre, cantidad) {
 export async function venderPlatoAsync(nombre, cantidad) {
     const resultado = venderPlato(nombre, cantidad);
 
-    if (!resultado.ok) {
-        throw new Error(resultado.mensaje);
+    if (
+        resultado === "No se encontro el plato" ||
+        resultado === "Plato no disponible" ||
+        resultado === "No hay stock suficiente"
+    ) {
+        throw new Error(resultado);
     }
 
-    const respuesta = await simularRespuestaServidor(resultado.mensaje);
+    const respuesta = await simuladorRepuestas(resultado);
     return respuesta;
 }
 

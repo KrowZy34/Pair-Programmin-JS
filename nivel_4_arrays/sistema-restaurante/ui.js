@@ -5,32 +5,27 @@ import {
     stockMinimo,
     stockAlto,
     resumenMenu,
-    venderPlato,
+    // venderPlato,
     verificarEstadoGeneral,
     venderPlatoAsync
 } from "./operaciones.js";
 
 
 
-
-
-
-
-
-export async function mostrarResultadoAsync(resultado) {
-
+export async function mostrarResultadoAsync(nombre, cantidad) {
     try {
-        mostrarResultado("Procesando...");
-        const resultado = await venderPlatoAsync(nombre, cantidad);
-        mostrarResultado(resultado);
+        mostrarMensaje("Procesando...", "procesando");
+        const mensaje = await venderPlatoAsync(nombre, cantidad);
+        mostrarMensaje(mensaje, "exito");
         renderMenu();
-
-
     } catch (error) {
-        mostrarResultado(error.message);
+        mostrarMensaje(error.message || error, "error");
     }
+}
 
-
+export function mostrarMensaje(texto, tipo = "") {
+    const output = document.getElementById("output");
+    output.innerHTML = `<p class="mensaje ${tipo}">${texto}</p>`;
 }
 
 export function mostrarResultado(resultado) {
@@ -112,11 +107,17 @@ export function conectarBotones() {
         mostrarTextoEnPantalla(resumenMenu());
     });
 
+    // document.getElementById("btnVender").addEventListener("click", () => {
+    //     let nombre = document.getElementById("inputVender").value;
+    //     let cantidad = document.getElementById("inputCantidad").value;
+    //     let resultado = venderPlato(nombre, cantidad);
+    //     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+    // });
+
     document.getElementById("btnVender").addEventListener("click", () => {
         let nombre = document.getElementById("inputVender").value;
-        let cantidad = document.getElementById("inputCantidad").value;
-        let resultado = venderPlato(nombre, cantidad);
-        mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+        let cantidad = parseInt(document.getElementById("inputCantidad").value);
+        mostrarResultadoAsync(nombre, cantidad);
     });
 
 
