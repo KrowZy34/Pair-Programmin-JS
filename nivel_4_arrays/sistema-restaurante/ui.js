@@ -6,9 +6,32 @@ import {
     stockAlto,
     resumenMenu,
     venderPlato,
-    verificarEstadoGeneral
+    verificarEstadoGeneral,
+    venderPlatoAsync
 } from "./operaciones.js";
 
+
+
+
+
+
+
+
+export async function mostrarResultadoAsync(resultado) {
+
+    try {
+        mostrarResultado("Procesando...");
+        const resultado = await venderPlatoAsync(nombre, cantidad);
+        mostrarResultado(resultado);
+        renderMenu();
+
+
+    } catch (error) {
+        mostrarResultado(error.message);
+    }
+
+
+}
 
 export function mostrarResultado(resultado) {
     const output = document.getElementById("output");
