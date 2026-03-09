@@ -17,7 +17,6 @@ export async function mostrarResultadoAsync(nombre, cantidad) {
         mostrarMensaje("Procesando...", "procesando");
         const mensaje = await venderPlatoAsync(nombre, cantidad);
         mostrarMensaje(mensaje, "exito");
-        renderMenu();
     } catch (error) {
         mostrarMensaje(error.message || error, "error");
     }
