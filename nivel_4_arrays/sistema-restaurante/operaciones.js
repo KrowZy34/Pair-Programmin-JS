@@ -6,28 +6,28 @@ export function contarPlatos() {
 }
 
 export function buscarPlatoNombre(nombre) {
-    let resultado = menu.find(function(plato) {
+    let resultado = menu.find(function (plato) {
         return plato.nombre.toLowerCase() === nombre.toLowerCase();
     });
     return resultado;
 }
 
 export function stockMinimo() {
-    let stockminimo = menu.filter(function(plato) {
+    let stockminimo = menu.filter(function (plato) {
         return plato.stock <= 3;
     });
     return stockminimo;
 }
 
 export function stockAlto() {
-    let stockalto = menu.filter(function(plato) {
+    let stockalto = menu.filter(function (plato) {
         return plato.stock >= 5;
     });
     return stockalto;
 }
 
 export function resumenMenu() {
-    let resumen = menu.map(function(plato) {
+    let resumen = menu.map(function (plato) {
         return plato.nombre + " S/" + plato.precio + " Stock: " + plato.stock;
     });
     return resumen;
@@ -95,4 +95,11 @@ export function verificarEstadoGeneral() {
         return `Hay ${estadoBajo} platos con stock bajo`;
     }
     return `Todos los platos disponibles`;
+}
+
+export class ErrorNegocio extends Error {
+    constructor(mensaje) {
+        super(mensaje);
+        this.name = "ErrorNegocio";
+    }
 }
