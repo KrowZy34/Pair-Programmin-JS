@@ -5,10 +5,27 @@ import {
     stockMinimo,
     stockAlto,
     resumenMenu,
-    venderPlato,
-    verificarEstadoGeneral
+    // venderPlato,
+    verificarEstadoGeneral,
+    venderPlatoAsync
 } from "./operaciones.js";
 
+
+
+export async function mostrarResultadoAsync(nombre, cantidad) {
+    try {
+        mostrarMensaje("Procesando...", "procesando");
+        const mensaje = await venderPlatoAsync(nombre, cantidad);
+        mostrarMensaje(mensaje, "exito");
+    } catch (error) {
+        mostrarMensaje(error.message || error, "error");
+    }
+}
+
+export function mostrarMensaje(texto, tipo = "") {
+    const output = document.getElementById("output");
+    output.innerHTML = `<p class="mensaje ${tipo}">${texto}</p>`;
+}
 
 export function mostrarResultado(resultado) {
     const output = document.getElementById("output");
@@ -89,11 +106,17 @@ export function conectarBotones() {
         mostrarTextoEnPantalla(resumenMenu());
     });
 
+    // document.getElementById("btnVender").addEventListener("click", () => {
+    //     let nombre = document.getElementById("inputVender").value;
+    //     let cantidad = document.getElementById("inputCantidad").value;
+    //     let resultado = venderPlato(nombre, cantidad);
+    //     mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+    // });
+
     document.getElementById("btnVender").addEventListener("click", () => {
         let nombre = document.getElementById("inputVender").value;
-        let cantidad = document.getElementById("inputCantidad").value;
-        let resultado = venderPlato(nombre, cantidad);
-        mostrarResultado(resultado ? [resultado] : ["No se encontro el plato"]);
+        let cantidad = parseInt(document.getElementById("inputCantidad").value);
+        mostrarResultadoAsync(nombre, cantidad);
     });
 
 
